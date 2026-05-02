@@ -79,23 +79,23 @@ class EtfCategories extends BasePackage
         return false;
     }
 
-    public function calculateCategoriesPercentDiff($mainCategory, $withCategory)
+    public function calculateCategoriesPercentDiff($calculateMain, $calculateWith)
     {
-        if ((float) $mainCategory <= 0 || (float) $withCategory <= 0) {
+        if ((float) $calculateMain <= 0 || (float) $calculateWith <= 0) {
             $this->addResponse('Numbers cannot be less than or equal to 0', 1);
 
             return false;
         }
 
-        $total = $mainCategory + $withCategory;
+        $total = $calculateMain + $calculateWith;
 
-        $mainCategoryPercent = ($mainCategory / $total) * 100;
-        $withCategoryPercent = ($withCategory / $total) * 100;
+        $calculateMainPercent = ($calculateMain / $total) * 100;
+        $calculateWithPercent = ($calculateWith / $total) * 100;
 
-        if ($mainCategoryPercent >= $withCategoryPercent) {
-            $diff = $mainCategoryPercent - $withCategoryPercent;
+        if ($calculateMainPercent >= $calculateWithPercent) {
+            $diff = $calculateMainPercent - $calculateWithPercent;
         } else {
-            $diff = $withCategoryPercent - $mainCategoryPercent;
+            $diff = $calculateWithPercent - $calculateMainPercent;
         }
 
         $this->addResponse('Calculated', 0, ['diff' => $diff . '%']);
